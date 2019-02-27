@@ -45,9 +45,9 @@ public class CadastroCliente extends javax.swing.JPanel {
         cpEndereco = new javax.swing.JTextField();
         cpBairro = new javax.swing.JTextField();
         cpComplemento = new javax.swing.JTextField();
-        cpCep = new javax.swing.JTextField();
-        cpCelular = new javax.swing.JTextField();
         btnEnviar = new javax.swing.JButton();
+        cpCep = new javax.swing.JFormattedTextField();
+        cpCelular = new javax.swing.JFormattedTextField();
 
         lTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lTitulo.setText("Cadastro Cliente");
@@ -83,6 +83,15 @@ public class CadastroCliente extends javax.swing.JPanel {
             }
         });
 
+        cpCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#####-###"))));
+        cpCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpCepActionPerformed(evt);
+            }
+        });
+
+        cpCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("(##)#####-####"))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,41 +99,44 @@ public class CadastroCliente extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnEnviar))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(lTitulo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lBairro)
-                                    .addComponent(lCEP))
-                                .addGap(18, 18, 18)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lNome)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cpNome, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lBairro)
+                                            .addComponent(lCEP))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cpCep)
+                                            .addComponent(cpBairro))))
+                                .addGap(55, 55, 55)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cpBairro)
-                                    .addComponent(cpCep)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lEndereco)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                        .addComponent(cpEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lCelular)
+                                            .addComponent(lComplemento))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cpComplemento)
+                                            .addComponent(cpCelular)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lNome)
-                                .addGap(18, 18, 18)
-                                .addComponent(cpNome, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lEndereco)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                                .addComponent(cpEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lCelular)
-                                    .addComponent(lComplemento))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cpComplemento)
-                                    .addComponent(cpCelular))))))
-                .addGap(64, 64, 64))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnEnviar)))
+                        .addGap(40, 40, 40)))
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,8 +158,8 @@ public class CadastroCliente extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lCEP)
-                    .addComponent(cpCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lCelular)
+                    .addComponent(cpCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cpCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(btnEnviar)
@@ -186,12 +198,16 @@ public class CadastroCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEnviarActionPerformed
 
+    private void cpCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpCepActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
     private javax.swing.JTextField cpBairro;
-    private javax.swing.JTextField cpCelular;
-    private javax.swing.JTextField cpCep;
+    private javax.swing.JFormattedTextField cpCelular;
+    private javax.swing.JFormattedTextField cpCep;
     private javax.swing.JTextField cpComplemento;
     private javax.swing.JTextField cpEndereco;
     private javax.swing.JTextField cpNome;

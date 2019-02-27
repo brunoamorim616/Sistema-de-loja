@@ -30,6 +30,7 @@ public class ClienteDao extends ConnectionFactory {
             st.close();
         }
         this.con.close();
+     
     }
     
     public List<Cliente> listarClientes() throws SQLException {
