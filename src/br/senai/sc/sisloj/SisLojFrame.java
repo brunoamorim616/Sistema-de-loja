@@ -7,9 +7,11 @@ package br.senai.sc.sisloj;
 
 import br.senai.sc.sisloj.views.CadastroCliente;
 import br.senai.sc.sisloj.views.Index;
+import br.senai.sc.sisloj.views.ListagemCliente;
 import br.senai.sc.sisloj.views.PainelAmarelo;
 import br.senai.sc.sisloj.views.PainelRosa;
 import java.awt.CardLayout;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,14 +38,9 @@ public class SisLojFrame extends javax.swing.JFrame {
         CadastroCliente cCliente = new CadastroCliente();
         painelPrincipal.add(cCliente, "painelCadastroCliente");
         
-        
-        
-        
-        
-        
-        
-        
-        
+        ListagemCliente lc = new ListagemCliente();
+        painelPrincipal.add(lc, "Listagem de Cliente");
+         
     }
 
     /**
@@ -85,6 +82,11 @@ public class SisLojFrame extends javax.swing.JFrame {
         menCliente.add(menCadastrarCliente);
 
         menListarCliente.setText("Listar Clientes");
+        menListarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menListarClienteActionPerformed(evt);
+            }
+        });
         menCliente.add(menListarCliente);
 
         barraDeMenu.add(menCliente);
@@ -153,6 +155,11 @@ public class SisLojFrame extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) painelPrincipal.getLayout();
         cl.show(painelPrincipal, "painelRosa");
     }//GEN-LAST:event_painelRosaActionPerformed
+
+    private void menListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menListarClienteActionPerformed
+        CardLayout cl = (CardLayout) painelPrincipal.getLayout();
+        cl.show(painelPrincipal, "Listagem de Cliente");
+    }//GEN-LAST:event_menListarClienteActionPerformed
 
     /**
      * @param args the command line arguments

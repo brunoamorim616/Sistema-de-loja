@@ -17,15 +17,16 @@ public class ClienteDao extends ConnectionFactory {
     }
     
     public void inserir(Cliente cli) throws SQLException{
-        String sql ="insert into cliente(nomeCliente,enderecoCliente,bairroCliente,complemento,cepCliente,celularCliente) values (?,?,?,?,?,?);";
+        String sql ="insert into cliente(nomcli, endcli, baicli, comcli, cepcli, celcli) values (?,?,?,?,?,?);";
         
         try(PreparedStatement st = this.con.prepareStatement(sql)){
             st.setString(1,cli.getNomcli());
             st.setString(2, cli.getEndcli());
             st.setString(3, cli.getBaicli());
             st.setString(4, cli.getComcli());
-            st.setInt(5, cli.getCepcli());
-            st.setInt(6, cli.getCelcli());
+            st.setLong(5, cli.getCepcli());
+            st.setLong(6, cli.getCelcli());
+            
             st.execute();
             st.close();
         }
@@ -48,8 +49,8 @@ public class ClienteDao extends ConnectionFactory {
                 c.setEndcli(rs.getString("endcli"));
                 c.setBaicli(rs.getString("baicli"));
                 c.setComcli(rs.getString("comcli"));
-                c.setCepcli(rs.getInt("cepcli"));
-                c.setCelcli(rs.getInt("celcli"));
+                c.setCepcli(rs.getLong("cepcli"));
+                c.setCelcli(rs.getLong("celcli"));
                 
                 clientes.add(c);
             }
